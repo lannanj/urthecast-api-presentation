@@ -11,11 +11,11 @@ Full API documentation is available at https://developers.urthecast.com/docs.
 # Instructions
 
 * Open `index.html` in Chrome
-* Navigate through the presentation using the arrow keys (left/right/up/down). The available directions are visible in the bottom right corner.
+* Navigate through the presentation using the space bar or the arrow keys (left/right/up/down). The available directions are visible in the bottom right corner.
 
 Important things to note:
 
 * All "live" demoes require an API key / secret
 * You will need to create an account at https://developers.urthecast.com to get an API key / secret
 
-Questions? Please email Alex Bain (alex@urthecast.com).
+Questions? Please email platform@urthecast.com.
