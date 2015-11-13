@@ -104,9 +104,9 @@ function getNextForecastForAOI(aoiID, sensor, callback) {
         //                         this ensures that the forecasts returned intersect with our AOI ID
         // * epoch_gte - this ensures that the "epoch" (timestamp of the forecast) is "gte" (greater than or
         //               or equal to) the current moment. So, basically, in the future.
-        // * sort - how to sort the results. in this case we're sorting by the epoch of the first orbit point
+        // * sort - how to sort the results. in this case we're sorting by the epoch
         // * limit - we only want the *next* forecast, so limit the results returned to 1
-        url = "https://api.urthecast.com/v1/satellite_tracker/sensor_platforms/" + sensor + "/forecasts?api_key=" + apiKey + "&api_secret=" + apiSecret + "&geometry_intersects=" + aoiID + "&epoch_gte=" + now + "&sort=first_orbit_point_epoch&limit=1";
+        url = "https://api.urthecast.com/v1/satellite_tracker/sensor_platforms/" + sensor + "/forecasts?api_key=" + apiKey + "&api_secret=" + apiSecret + "&geometry_intersects=" + aoiID + "&epoch_gte=" + now + "&sort=epoch&limit=1";
 
     $.ajax({
         type: "GET",
