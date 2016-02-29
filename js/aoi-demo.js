@@ -12,6 +12,20 @@ document.querySelector('#create-sf-aoi').addEventListener('click', function(evt)
         localStorage.setItem('sf-aoi-id', id);
         localStorage.setItem('sf-aoi-name', name);
 
+        // Create the AOI map
+        var aoiMap = L.map('aoi-map', {
+            keyboard: false,
+            attributionControl: false
+        }).setView([38.7386, -121.7299], 8);
+
+        // Set a Mapbox basemap layer so we have some context on where we are in the world
+        var layer = L.tileLayer('http://api.mapbox.com/v4/urthecast2.ipog0aj7/{z}/{x}/{y}.jpg?access_token=pk.eyJ1IjoidXJ0aGVjYXN0MiIsImEiOiJKM1pwMnFZIn0.ReeiMLJtH18oqVeto7KyZw').addTo(aoiMap);
+
+        var geoJson = L.geoJson(data.payload[0].geometry).addTo(aoiMap);
+
+        aoiMap.fitBounds(geoJson);
+
+
         document.querySelector("#create-sf-aoi-response-name").textContent = name;
         document.querySelector("#create-sf-aoi-response-id").textContent = id;
         document.querySelector("#create-sf-aoi-response-url").textContent = url + "\n\n" + JSON.stringify(data);

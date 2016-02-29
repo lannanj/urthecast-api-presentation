@@ -1,11 +1,10 @@
 <!doctype html>
 <html lang="en">
 	<head>
-
 		<meta charset="utf-8">
-		<title>Urthecast API Demonstration</title>
+		<title>Urthecast Web Platform</title>
 
-        <meta name="description" content="This presentation is a demonstration of the Urthecast APIs. All examples are live API examples.">
+        <meta name="description" content="This presentation is a demonstration of the Urthecast Web Platform. All examples are live API examples.">
         <meta name="author" content="Alex Bain <alex@urthecast.com>">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -21,14 +20,11 @@
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
-
 	</head>
 	<body>
-
         <div id="map" class="hidden"></div>
         <div id="sat-imagery" class="hidden"></div>
         <div class="reveal">
-
             <!-- Slides -->
             <div class="slides">
                 <section>
@@ -44,23 +40,58 @@
 
                 <section>
                     <h2>Overview</h2>
-                    <p class="fragment">Urthecast APIs enable developers to build custom geospatial applications</p>
-                    <p class="fragment">Foundational layer for apps - internal and external</p>
+                    <p class="fragment">Urthecast APIs enable customers to integrate Urthecast data directly into their applications</p>
+                    <p class="fragment">Foundational layer - internal and external applications</p>
                 </section>
 
                 <section>
                     <h2>Open Source</h2>
-                    <p class="fragment">Urthecast APIs adhere to open standards</p>
+                    <p class="fragment">Urthecast APIs adhere to modern standards</p>
                     <p class="fragment">Our APIs are built with open source software</p>
                 </section>
 
                 <section>
-                    <h2>Launch APIs</h2>
-                    <p class="fragment">Archive</p>
-                    <p class="fragment">Areas of Interest</p>
-                    <p class="fragment">Events</p>
-                    <p class="fragment">Satellite Tracker</p>
-                    <p class="fragment">Map Tile Service</p>
+                    <h2>Outline</h2>
+                    <ol>
+                        <li class="fragment">What is an API?</li>
+                        <li class="fragment">Why build APIs?</li>
+                        <li class="fragment">Live demos of our APIs</li>
+                        <li class="fragment">Get started today</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2 class="fragment">1. What is an API?</h2>
+                </section>
+
+                <section>
+                    <p class="fragment">A "user interface" for the world of servers and software</p>
+                    <p class="fragment">A way for two software systems to communicate</p>
+                    <p class="fragment">All around you. Likely have used 20+ APIs already today</p>
+                    <p class="fragment">Enable programmatic access to data and services</p>
+                </section>
+
+                <section>
+                    <h2 class="fragment">2. Why build APIs?</h2>
+                </section>
+
+                <section>
+                    <p class="fragment">24 / 7 / 365 access</p>
+                    <p class="fragment">Disasters don't wait for business hours</p>
+                    <p class="fragment">Response times measured in milliseconds</p>
+                    <p class="fragment">Scalable - serve many customers simultaneously</p>
+                    <p class="fragment">WYSIWYG vs WYSIAYG</p>
+                </section>
+
+                <section>
+                    <h2 class="fragment">3. Live API demos</h2>
+                </section>
+
+                <section>
+                    <h2>Preface:</h2>
+                    <p class="fragment">This presentation is a web application</p>
+                    <p class="fragment">All examples are making live API requests</p>
+                    <p class="fragment">This presentation is open source and available on GitHub</p>
                 </section>
 
                 <!-- Give user chance to enter key/secret.  -->
@@ -74,6 +105,181 @@
                     </div>
                     <div id="api-key-secret-form-success" class="hidden">
                         <p>Alright, let's begin!</p>
+                    </div>
+                </section>
+
+                <!-- Areas of Interest (AOI) examples -->
+                <section>
+                    <h2>3.1 Areas of Interest</h2>
+                    <p class="fragment">The world is a big place</p>
+                </section>
+
+                <section>
+                    <p>Urthecast captures a lot of data</p>
+                </section>
+
+                <section>
+                    <p>Not all data is relevant to every customer</p>
+                </section>
+
+                <section>
+                    <p>So, while much of the world is beautiful...</p>
+                </section>
+
+                <section>
+                    <img src="https://s3.amazonaws.com/urthecast-abain-chrome-extension/00003623_001.jpg" class="fullscreen" alt="" />
+                </section>
+
+                <section>
+                    <img src="https://s3.amazonaws.com/urthecast-abain-chrome-extension/00003648_001.jpg" class="fullscreen" alt="" />
+                </section>
+
+                <section>
+                    <img src="https://s3.amazonaws.com/urthecast-abain-chrome-extension/00171295_003.jpg" class="fullscreen" alt="" />
+                </section>
+
+                <section>
+                    <img src="https://s3.amazonaws.com/urthecast-abain-chrome-extension/00247775_002.jpg" class="fullscreen" alt="" />
+                </section>
+
+                <section>
+                    <p>You need a way to filter the data</p>
+                </section>
+
+                <section>
+                    <p>That way is the Areas of Interest (AOI) API</p>
+                </section>
+
+                <section>
+                    <h2>AOIs enable you to:</h2>
+                    <p class="fragment">Define a region of the planet you want to monitor</p>
+                    <p class="fragment">See capture opportunities from our satellites and sensors</p>
+                    <p class="fragment">Search our imagery archive for data that intersects</p>
+                    <p class="fragment">Track events happening within your AOI</p>
+                    <p class="fragment">Clip GeoTIFF imagery to save costs and bandwidth</p>
+                </section>
+
+                <section>
+                    <h2>Create an AOI</h2>
+                    <p>GeoJSON:</p>
+                    <pre id="sf-aoi">
+{"name":"San Francisco","geometry":{"type":"Polygon","coordinates":[[[-122.51747131347655,37.71261539271678],[-122.51747131347655,37.82036164330873],[-122.35507965087889,37.82036164330873],[-122.35507965087889,37.71261539271678],[-122.51747131347655,37.71261539271678]]]}}
+                    </pre>
+                    <p><a href="#" id="create-sf-aoi">Create AOI</a></p>
+                    <p id="create-sf-aoi-response-name">&nbsp;</p>
+                    <p id="create-sf-aoi-response-id">&nbsp;</p>
+                </section>
+
+                <section>
+                    <pre id="create-sf-aoi-response-url" class="code-block"></pre>
+                </section>
+
+                <section>
+                    <p>Map of our AOI:</p>
+                    <div id="aoi-map" class="regular-map"></div>
+                </section>
+
+                <section>
+                    <p>We'll use our AOI in future examples.</p>
+                </section>
+
+                <!-- Satellite Tracker Examples -->
+                <section>
+                    <h2>3.2 Satellite Tracker</h2>
+                    <p class="fragment">Data begins with the upstream.</p>
+                </section>
+
+                <section>
+                    <p>Customers frequently ask for a way to see and forecast capture opportunities from satellites.</p>
+                </section>
+
+                <section>
+                    <p>The Satellite Tracker API makes that information available.</p>
+                </section>
+
+                <section>
+                    <p class="fragment">Learn what satellites and sensors are available</p>
+                    <p class="fragment">Query past, present, predicted position of satellites</p>
+                    <p class="fragment">See historical capture opportunities and 14 day predictions</p>
+                    <p class="fragment">Access raw TLE data</p>
+                </section>
+
+                <section>
+                    <h1>Examples</h1>
+                </section>
+
+                <section data-satellite="iss">
+                    <p><a href="#" class="satellite-current-location">Where is the ISS, right now?</a></p>
+                    <pre class="code-block current-location-api-request"></pre>
+                    <div class="current-location-results"></div>
+                </section>
+
+                <section data-satellite="deimos-1">
+                    <p><a href="#" class="satellite-current-location">Deimos-1?</a></p>
+                    <pre class="code-block current-location-api-request"></pre>
+                    <div class="current-location-results"></div>
+                </section>
+
+                <section data-satellite="deimos-2">
+                    <p><a href="#" class="satellite-current-location">Deimos-2?</a></p>
+                    <pre class="code-block current-location-api-request"></pre>
+                    <div class="current-location-results"></div>
+                </section>
+
+                <section data-satellite="landsat-8">
+                    <p><a href="#" class="satellite-current-location">Landsat-8?</a></p>
+                    <pre class="code-block current-location-api-request"></pre>
+                    <div class="current-location-results"></div>
+                </section>
+
+                <section>
+                    <h2>Forecasts</h2>
+                    <p class="fragment">When is the next capture opportunity for my AOI?</p>
+                </section>
+
+                <section>
+                    <p class="fragment">Every satellite has a different orbit.</p>
+                    <p class="fragment">Each sensor has a different capture area.</p>
+                    <p class="fragment">How can you know when sensors could image your AOI?</p>
+                </section>
+
+                <section>
+                    <div class="fragment">
+                        <h2>AOI + Satellite Tracker</h2>
+                        <p><a href="#" id="sat-tracker-forecast-aoi">When is the next capture opportunity from Theia?</a></p>
+                        <p id="sat-tracker-forecast-aoi-response">&nbsp;</p>
+                        <pre id="sat-tracker-forecast-aoi-url" class="code-block code-block--big"></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="">
+                        <p><a href="#" id="sat-tracker-forecast-aoi-landsat">Next capture opportunity from Landsat-8?</a></p>
+                        <p id="sat-tracker-forecast-aoi-response-landsat">&nbsp;</p>
+                        <pre id="sat-tracker-forecast-aoi-url-landsat" class="code-block code-block--big"></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>TLEs - Two Line Element sets</h2>
+                </section>
+
+                <section data-tle="iss">
+                    <p><a href="#" id="iss-tles">Get latest ISS TLE</a></p>
+                    <pre class="code-block" id="iss-tles-result"></pre>
+                </section>
+
+                <section>
+                    <p><a href="#" id="landsat8-tles">Get latest Landsat8 TLE</a></p>
+                    <pre class="code-block" id="landsat8-tles-result"></pre>
+                </section>
+
+                <section>
+                    <div class="fragment">
+                        <h2>Areas of Interest + Archive</h2>
+                        <p><a href="#" id="catalog-filter-aoi">How many scenes intersect with our AOI?</a></p>
+                        <p id="catalog-filter-aoi-response">&nbsp;</p>
+                        <pre id="catalog-filter-aoi-url" class="code-block code-block--big"></pre>
                     </div>
                 </section>
 
@@ -133,57 +339,6 @@
                     </section>
                 </section>
 
-                <!-- Areas of Interest (AOI) examples -->
-                <section>
-                    <section>
-                        <h2>Areas of Interest</h2>
-                        <p class="fragment">Monitor areas of the planet</p>
-                        <p class="fragment">Persistent data flow</p>
-                        <p class="fragment">Use an AOI to filter Archive / Satellite Tracker</p>
-                        <p class="fragment">Track events happening within your AOI</p>
-                    </section>
-                    <section>
-                        <h1>Examples</h1>
-                    </section>
-                    <section>
-                        <h2>Create an SF AOI</h2>
-                        <p>GeoJSON:</p>
-                        <pre id="sf-aoi">
-{"name":"San Francisco","geometry":{"type":"Polygon","coordinates":[[[-122.51747131347655,37.71261539271678],[-122.51747131347655,37.82036164330873],[-122.35507965087889,37.82036164330873],[-122.35507965087889,37.71261539271678],[-122.51747131347655,37.71261539271678]]]}}
-                        </pre>
-                        <p><a href="#" id="create-sf-aoi">Create AOI</a></p>
-                        <p id="create-sf-aoi-response-name">&nbsp;</p>
-                        <p id="create-sf-aoi-response-id">&nbsp;</p>
-                    </section>
-                    <section>
-                        <pre id="create-sf-aoi-response-url" class="code-block"></pre>
-                    </section>
-                    <section>
-                        <div class="fragment">
-                            <h2>Areas of Interest + Archive</h2>
-                            <p><a href="#" id="catalog-filter-aoi">How many scenes intersect with our AOI?</a></p>
-                            <p id="catalog-filter-aoi-response">&nbsp;</p>
-                            <pre id="catalog-filter-aoi-url" class="code-block code-block--big"></pre>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="fragment">
-                            <h2>AOI + Satellite Tracker</h2>
-                            <p><a href="#" id="sat-tracker-forecast-aoi">When is the next capture opportunity from Theia?</a></p>
-                            <p id="sat-tracker-forecast-aoi-response">&nbsp;</p>
-                            <pre id="sat-tracker-forecast-aoi-url" class="code-block code-block--big"></pre>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="">
-                            <p><a href="#" id="sat-tracker-forecast-aoi-landsat">Next capture opportunity from Landsat-8?</a></p>
-                            <p id="sat-tracker-forecast-aoi-response-landsat">&nbsp;</p>
-                            <pre id="sat-tracker-forecast-aoi-url-landsat" class="code-block code-block--big"></pre>
-                        </div>
-                    </section>
-
-                </section>
-
                 <!-- Event Stream Examples -->
                 <section>
                     <section>
@@ -203,40 +358,6 @@
                     <section>
                         <p><a href="#" id="event-stream-aoi">What are the most recent events for our San Francisco AOI?</a></p>
                         <pre id="event-stream-aoi-results" class="code-block code-block--big"></pre>
-                    </section>
-                </section>
-
-                <!-- Satellite Tracker Examples -->
-                <section>
-                    <section>
-                        <h2>Satellite Tracker</h2>
-                        <p class="fragment">Query past, present, predicted position of satellites</p>
-                        <p class="fragment">Access TLE data for all tracked satellites</p>
-                        <p class="fragment">Forecasts - see capture opportunities for all sensors historically or up to 14 days in the future</p>
-                    </section>
-                    <section>
-                        <h1>Examples</h1>
-                    </section>
-                    <section>
-                        <p><a href="#" id="iss-current-location">Where is the ISS, right now?</a></p>
-                        <pre id="iss-current-location-api-request" class="code-block"></pre>
-                        <div style="height: 450px; background: #000;" id="iss-current-location-results"></div>
-                    </section>
-                    <section>
-                        <p><a href="#" id="landsat8-current-location">Where is Landsat8?</a></p>
-                        <pre id="landsat8-current-location-api-request" class="code-block"></pre>
-                        <div style="height: 450px; background: #000;" id="landsat8-current-location-results"></div>
-                    </section>
-                    <section>
-                        <h2>TLEs - Two Line Element sets</h2>
-                    </section>
-                    <section>
-                        <p><a href="#" id="iss-tles">Get latest ISS TLE</a></p>
-                        <pre class="code-block" id="iss-tles-result"></pre>
-                    </section>
-                    <section>
-                        <p><a href="#" id="landsat8-tles">Get latest Landsat8 TLE</a></p>
-                        <pre class="code-block" id="landsat8-tles-result"></pre>
                     </section>
                 </section>
 
@@ -556,6 +677,5 @@ l                       data-acquired-lte="2015-03-30">
         <script src="js/sat-tracker-demo.js"></script>
         <script src="js/events-demo.js"></script>
         <script src="js/aoi-demo.js"></script>
-
     </body>
 </html>

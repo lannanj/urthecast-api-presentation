@@ -1,9 +1,15 @@
-// This example gets the ISS' current location
-document.querySelector('#iss-current-location').addEventListener('click', function(evt) {
+// This example gets the location of a satellite
+$('.satellite-current-location').on('click', function(evt) {
     evt.preventDefault();
+
+    // Get the satellite
+    var satellite = $(this).closest('section').attr('data-satellite');
+
+    // Map container
+    var mapContainer = $('section[data-satellite=' + satellite + '] .current-location-results')[0];
 
     // Create a Leaflet map
-    var satTrackerMap = L.map('iss-current-location-results', {
+    var satTrackerMap = L.map(mapContainer, {
         keyboard: false,
         attributionControl: false
     }).setView([38.7386, -121.7299], 2);
@@ -12,7 +18,7 @@ document.querySelector('#iss-current-location').addEventListener('click', functi
     var layer = L.tileLayer('http://api.mapbox.com/v4/urthecast2.ipog0aj7/{z}/{x}/{y}.jpg?access_token=pk.eyJ1IjoidXJ0aGVjYXN0MiIsImEiOiJKM1pwMnFZIn0.ReeiMLJtH18oqVeto7KyZw').addTo(satTrackerMap);
 
     // This helper method makes an API request and returns response + URL
-    getLocationOfSatellite('iss', function(data, url) {
+    getLocationOfSatellite(satellite, function(data, url) {
         var coordinates = data.payload[0].geometry.coordinates;
 
         // Create a Leaflet marker w/ the coordinates
@@ -22,39 +28,12 @@ document.querySelector('#iss-current-location').addEventListener('click', functi
         satTrackerMap.panTo([coordinates[1], coordinates[0]]);
 
         // Print the URL to the page
-        $('#iss-current-location-api-request').html(url);
-    });
-});
-
-// This example gets Landsat8's current location
-document.querySelector('#landsat8-current-location').addEventListener('click', function(evt) {
-    evt.preventDefault();
-
-    // Create a Leaflet marker w/ the coordinates
-    var satTrackerMap = L.map('landsat8-current-location-results', {
-        keyboard: false,
-        attributionControl: false
-    }).setView([38.7386, -121.7299], 2);
-
-    // Set a Mapbox basemap layer so we have some context on where we are in the world
-    var layer = L.tileLayer('http://api.mapbox.com/v4/urthecast2.ipog0aj7/{z}/{x}/{y}.jpg?access_token=pk.eyJ1IjoidXJ0aGVjYXN0MiIsImEiOiJKM1pwMnFZIn0.ReeiMLJtH18oqVeto7KyZw').addTo(satTrackerMap);
-
-    // This helper method makes an API request and returns response + URL
-    getLocationOfSatellite('landsat-8', function(data, url) {
-        var coordinates = data.payload[0].geometry.coordinates;
-        // Create a Leaflet marker w/ the coordinates
-        L.marker([coordinates[1], coordinates[0]]).addTo(satTrackerMap);
-
-        // Pan the map to the market so it's visible
-        satTrackerMap.panTo([coordinates[1], coordinates[0]]);
-
-        // Print the URL to the page
-        $('#landsat8-current-location-api-request').html(url);
+        $('section[data-satellite=' + satellite + '] .current-location-api-request').html(url);
     });
 });
 
 // Get some TLEs (two line element sets) of the ISS
-document.querySelector('#iss-tles').addEventListener('click', function(evt) {
+$('#iss-tles').on('click', function(evt) {
     evt.preventDefault();
 
     getTLEsForSatellite('iss', function(data) {
@@ -64,7 +43,7 @@ document.querySelector('#iss-tles').addEventListener('click', function(evt) {
 });
 
 // Get some TLEs (two line element sets) of Landsat8
-document.querySelector('#landsat8-tles').addEventListener('click', function(evt) {
+$('#landsat8-tles').on('click', function(evt) {
     evt.preventDefault();
 
     getTLEsForSatellite('landsat-8', function(data) {

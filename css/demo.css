@@ -104,3 +104,13 @@ input {
     color: #fff;
     padding: 24px 68px;
 }
+
+.fullscreen {
+    width: 100%;
+}
+
+.current-location-results,
+.regular-map {
+    height: 450px;
+    background: #000;
+}
