@@ -39,18 +39,6 @@
                 </section>
 
                 <section>
-                    <h2>Overview</h2>
-                    <p class="fragment">Urthecast APIs enable customers to integrate Urthecast data directly into their applications</p>
-                    <p class="fragment">Foundational layer - internal and external applications</p>
-                </section>
-
-                <section>
-                    <h2>Open Source</h2>
-                    <p class="fragment">Urthecast APIs adhere to modern standards</p>
-                    <p class="fragment">Our APIs are built with open source software</p>
-                </section>
-
-                <section>
                     <h2>Outline</h2>
                     <ol>
                         <li class="fragment">What is an API?</li>
@@ -62,6 +50,7 @@
 
                 <section>
                     <h2 class="fragment">1. What is an API?</h2>
+                    <p class="fragment">It's an Application Programming Interface.</p>
                 </section>
 
                 <section>
@@ -73,6 +62,7 @@
 
                 <section>
                     <h2 class="fragment">2. Why build APIs?</h2>
+                    <p class="fragment">Humans aren't the only user.</p>
                 </section>
 
                 <section>
@@ -147,7 +137,7 @@
                 </section>
 
                 <section>
-                    <p>That way is the Areas of Interest (AOI) API</p>
+                    <p>You do that with the Areas of Interest API</p>
                 </section>
 
                 <section>
@@ -175,7 +165,7 @@
                 </section>
 
                 <section>
-                    <p>Map of our AOI:</p>
+                    <p><a href="#" id="aoi-map-link">View map of our AOI:</a></p>
                     <div id="aoi-map" class="regular-map"></div>
                 </section>
 
@@ -198,6 +188,7 @@
                 </section>
 
                 <section>
+                    <p>Sat Tracker enables you to:</p>
                     <p class="fragment">Learn what satellites and sensors are available</p>
                     <p class="fragment">Query past, present, predicted position of satellites</p>
                     <p class="fragment">See historical capture opportunities and 14 day predictions</p>
@@ -240,125 +231,160 @@
                 <section>
                     <p class="fragment">Every satellite has a different orbit.</p>
                     <p class="fragment">Each sensor has a different capture area.</p>
-                    <p class="fragment">How can you know when sensors could image your AOI?</p>
+                    <p class="fragment">It's non trivial to know when we might capture your AOI.</p>
                 </section>
 
                 <section>
-                    <div class="fragment">
-                        <h2>AOI + Satellite Tracker</h2>
-                        <p><a href="#" id="sat-tracker-forecast-aoi">When is the next capture opportunity from Theia?</a></p>
-                        <p id="sat-tracker-forecast-aoi-response">&nbsp;</p>
-                        <pre id="sat-tracker-forecast-aoi-url" class="code-block code-block--big"></pre>
-                    </div>
+                    <h2>AOI + Satellite Tracker</h2>
+                </section>
+
+                <section data-sensor="theia">
+                    <p><a href="#" class="next-forecast-for-aoi">When is the next capture opportunity from Theia?</a></p>
+                    <p class="next-forecast-for-aoi-response">&nbsp;</p>
+                    <pre class="next-forecast-for-aoi-code code-block code-block--big"></pre>
+                </section>
+
+                <section data-sensor="deimos-1">
+                    <p><a href="#" class="next-forecast-for-aoi">When is the next capture opportunity from Deimos-1?</a></p>
+                    <p class="next-forecast-for-aoi-response">&nbsp;</p>
+                    <pre class="next-forecast-for-aoi-code code-block code-block--big"></pre>
+                </section>
+
+                <section data-sensor="deimos-2">
+                    <p><a href="#" class="next-forecast-for-aoi">When is the next capture opportunity from Deimos-2?</a></p>
+                    <p class="next-forecast-for-aoi-response">&nbsp;</p>
+                    <pre class="next-forecast-for-aoi-code code-block code-block--big"></pre>
+                </section>
+
+                <section data-sensor="landsat-8">
+                    <p><a href="#" class="next-forecast-for-aoi">When is the next capture opportunity from Landsat-8?</a></p>
+                    <p class="next-forecast-for-aoi-response">&nbsp;</p>
+                    <pre class="next-forecast-for-aoi-code code-block code-block--big"></pre>
+                </section>
+
+<!--
+                <section>
+                    <h2>Two Line Element sets</h2>
+                    <p class="fragment">NORAD standard for tracking satellites</p>
+                </section>
+
+                <section data-satellite="iss">
+                    <p><a href="#" class="tle-link">Get latest ISS TLE</a></p>
+                    <pre class="code-block"></pre>
+                </section>
+
+                <section data-satellite="deimos-1">
+                    <p><a href="#" class="tle-link">Get latest Deimos-1 TLE</a></p>
+                    <pre class="code-block"></pre>
+                </section>
+
+                <section data-satellite="deimos-2">
+                    <p><a href="#" class="tle-link">Get latest Deimos-2 TLE</a></p>
+                    <pre class="code-block"></pre>
+                </section>
+
+                <section data-satellite="landsat-8">
+                    <p><a href="#" class="tle-link">Get latest Landsat8 TLE</a></p>
+                    <pre class="code-block"></pre>
+                </section>
+-->
+
+                <section>
+                    <p>Capture opportunities are not a guarantee of capture</p>
                 </section>
 
                 <section>
-                    <div class="">
-                        <p><a href="#" id="sat-tracker-forecast-aoi-landsat">Next capture opportunity from Landsat-8?</a></p>
-                        <p id="sat-tracker-forecast-aoi-response-landsat">&nbsp;</p>
-                        <pre id="sat-tracker-forecast-aoi-url-landsat" class="code-block code-block--big"></pre>
-                    </div>
-                </section>
-
-                <section>
-                    <h2>TLEs - Two Line Element sets</h2>
-                </section>
-
-                <section data-tle="iss">
-                    <p><a href="#" id="iss-tles">Get latest ISS TLE</a></p>
-                    <pre class="code-block" id="iss-tles-result"></pre>
-                </section>
-
-                <section>
-                    <p><a href="#" id="landsat8-tles">Get latest Landsat8 TLE</a></p>
-                    <pre class="code-block" id="landsat8-tles-result"></pre>
-                </section>
-
-                <section>
-                    <div class="fragment">
-                        <h2>Areas of Interest + Archive</h2>
-                        <p><a href="#" id="catalog-filter-aoi">How many scenes intersect with our AOI?</a></p>
-                        <p id="catalog-filter-aoi-response">&nbsp;</p>
-                        <pre id="catalog-filter-aoi-url" class="code-block code-block--big"></pre>
-                    </div>
-                </section>
-
-                <!-- Archive API Examples -->
-                <section>
-                    <section>
-                        <h2>Archive API</h2>
-                        <p class="fragment">Searchable archive of all imagery on platform</p>
-                        <p class="fragment">Multiple sensors - Theia, Landsat-8 on launch</p>
-                        <p class="fragment">Filter by: <span class="fragment">satellite,</span> <span class="fragment">sensor,</span> <span class="fragment">cloud coverage,</span> <span class="fragment">sun elevation angle,</span> <span class="fragment">area of interest,</span> <span class="fragment">season,</span> <span class="fragment"> and more</span></p>
-                        <p class="fragment">Bonus: Map Tile Service requests use these same Archive filters</p>
-                    </section>
-                    <section>
-                        <h1>Examples</h1>
-                    </section>
-                    <section>
-                        <div class="fragment">
-                            <a href="#" id="how-many-scenes">How many scenes do we have in the catalog, right now?</a>
-                            <p id="how-many-scenes-results">&nbsp;</p>
-                            <pre id="how-many-scenes-url" class="fragment code-block"></pre>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="fragment">
-                            <a href="#" id="how-many-theia-scenes">How many Theia scenes do we have in the catalog?</a>
-                            <p id="how-many-theia-scenes-results">&nbsp;</p>
-                            <pre id="how-many-theia-scenes-url" class="fragment code-block"></pre>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="fragment">
-                            <a href="#" id="how-many-theia-july-scenes">How many Theia scenes do we have from July 2015?</a>
-                            <p id="how-many-theia-july-scenes-results">&nbsp;</p>
-                            <pre id="how-many-theia-july-scenes-url" class="fragment code-block"></pre>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="fragment">
-                            <a href="#" id="how-many-landsat-june-scenes">Landsat8 from June 2015 with <= 10% cloud coverage?</a>
-                            <p id="how-many-landsat-june-scenes-results">&nbsp;</p>
-                            <pre id="how-many-landsat-june-scenes-url" class="fragment code-block"></pre>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="fragment">
-                            <a href="#" id="most-recent-theia-scene">When was the most recent Theia scene acquired?</a>
-                            <p id="most-recent-theia-scene-results">&nbsp;</p>
-                            <pre id="most-recent-theia-scene-url" class="fragment code-block code-block--big"></pre>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="fragment">
-                            <a href="#" id="most-recent-landsat-scene">When was the most recent Landsat8 scene acquired?</a>
-                            <p id="most-recent-landsat-scene-results">&nbsp;</p>
-                            <pre id="most-recent-landsat-scene-url" class="fragment code-block code-block--big"></pre>
-                        </div>
-                    </section>
+                    <p>How do you know if new data was captured?</p>
                 </section>
 
                 <!-- Event Stream Examples -->
                 <section>
-                    <section>
-                        <h2>Event Streams</h2>
-                        <p class="fragment">Tracking activity within your AOI</p>
-                        <p class="fragment">Stream of events happening on the platform</p>
-                        <p class="fragment">Launch event type: New imagery available</p>
-                        <p class="fragment">(more to come: <span class="fragment">AIS,</span> <span class="fragment">earthquakes,</span> <span class="fragment">fires, </span> <span class="fragment">deforestation</span>)</p>
-                    </section>
-                    <section>
-                        <h1>Examples</h1>
-                    </section>
-                    <section>
-                        <p><a href="#" id="event-stream">What are the most recent events on the Urthecast platform?</a></p>
-                        <pre id="event-stream-results" class="code-block code-block--big"></pre>
-                    </section>
-                    <section>
-                        <p><a href="#" id="event-stream-aoi">What are the most recent events for our San Francisco AOI?</a></p>
-                        <pre id="event-stream-aoi-results" class="code-block code-block--big"></pre>
-                    </section>
+                    <h2>Event Streams API</h2>
+                    <p class="fragment">Streams of events happening across the platform</p>
+                    <p class="fragment">Track activity within your AOI</p>
+                    <p class="fragment">Coming soon: Subscriptions to 'push' events to your app</p>
+                </section>
+                <section>
+                    <h1>Examples</h1>
+                </section>
+                <section>
+                    <p><a href="#" id="event-stream">What are the most recent events on the Urthecast platform?</a></p>
+                    <pre id="event-stream-results" class="code-block code-block--big"></pre>
+                </section>
+                <section>
+                    <p><a href="#" id="event-stream-aoi">What are the most recent events for our San Francisco AOI?</a></p>
+                    <pre id="event-stream-aoi-results" class="code-block code-block--big"></pre>
+                </section>
+
+
+                <!-- Archive API Examples -->
+                <section>
+                    <h2>Archive API</h2>
+                    <p class="fragment">Searchable archive of all imagery on platform</p>
+                    <p class="fragment">Multiple sensors - Theia, Landsat-8 on launch</p>
+                    <p class="fragment">Filter by: <span class="fragment">satellite,</span> <span class="fragment">sensor,</span> <span class="fragment">cloud coverage,</span> <span class="fragment">sun elevation angle,</span> <span class="fragment">area of interest,</span> <span class="fragment">season,</span> <span class="fragment"> and more</span></p>
+                    <p class="fragment">Bonus: Map Tile Service requests use these same Archive filters</p>
+                </section>
+
+                <section>
+                    <h1>Examples</h1>
+                </section>
+
+                <section>
+                    <div class="fragment">
+                        <a href="#" id="how-many-scenes">How many scenes do we have in the catalog, right now?</a>
+                        <p id="how-many-scenes-results">&nbsp;</p>
+                        <pre id="how-many-scenes-url" class="fragment code-block"></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="fragment">
+                        <a href="#" id="how-many-theia-scenes">How many Theia scenes do we have in the catalog?</a>
+                        <p id="how-many-theia-scenes-results">&nbsp;</p>
+                        <pre id="how-many-theia-scenes-url" class="fragment code-block"></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="fragment">
+                        <a href="#" id="how-many-theia-july-scenes">How many Theia scenes do we have from July 2015?</a>
+                        <p id="how-many-theia-july-scenes-results">&nbsp;</p>
+                        <pre id="how-many-theia-july-scenes-url" class="fragment code-block"></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="fragment">
+                        <a href="#" id="how-many-landsat-june-scenes">Landsat8 from June 2015 with <= 10% cloud coverage?</a>
+                        <p id="how-many-landsat-june-scenes-results">&nbsp;</p>
+                        <pre id="how-many-landsat-june-scenes-url" class="fragment code-block"></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="fragment">
+                        <a href="#" id="most-recent-theia-scene">When was the most recent Theia scene acquired?</a>
+                        <p id="most-recent-theia-scene-results">&nbsp;</p>
+                        <pre id="most-recent-theia-scene-url" class="fragment code-block code-block--big"></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="fragment">
+                        <a href="#" id="most-recent-landsat-scene">When was the most recent Landsat8 scene acquired?</a>
+                        <p id="most-recent-landsat-scene-results">&nbsp;</p>
+                        <pre id="most-recent-landsat-scene-url" class="fragment code-block code-block--big"></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="fragment">
+                        <h2>AOI + Archive</h2>
+                        <p><a href="#" id="catalog-filter-aoi">How many scenes intersect with our AOI?</a></p>
+                        <p id="catalog-filter-aoi-response">&nbsp;</p>
+                        <pre id="catalog-filter-aoi-url" class="code-block code-block--big"></pre>
+                    </div>
                 </section>
 
                 <!-- Map Tile Examples -->

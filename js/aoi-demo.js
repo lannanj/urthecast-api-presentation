@@ -6,30 +6,37 @@ document.querySelector('#create-sf-aoi').addEventListener('click', function(evt)
     // createAOI callback will receive data and URL and print to screen
     createAOI(data, function(data, url) {
         var name = data.payload[0]['name'],
-            id = data.payload[0]['id'];
+            id = data.payload[0]['id'],
+            geometry = data.payload[0].geometry;
 
         // Set the ID and name in localStorage for easy use in later demos
         localStorage.setItem('sf-aoi-id', id);
         localStorage.setItem('sf-aoi-name', name);
-
-        // Create the AOI map
-        var aoiMap = L.map('aoi-map', {
-            keyboard: false,
-            attributionControl: false
-        }).setView([38.7386, -121.7299], 8);
-
-        // Set a Mapbox basemap layer so we have some context on where we are in the world
-        var layer = L.tileLayer('http://api.mapbox.com/v4/urthecast2.ipog0aj7/{z}/{x}/{y}.jpg?access_token=pk.eyJ1IjoidXJ0aGVjYXN0MiIsImEiOiJKM1pwMnFZIn0.ReeiMLJtH18oqVeto7KyZw').addTo(aoiMap);
-
-        var geoJson = L.geoJson(data.payload[0].geometry).addTo(aoiMap);
-
-        aoiMap.fitBounds(geoJson);
-
+        localStorage.setItem('sf-aoi-geometry', JSON.stringify(geometry));
 
         document.querySelector("#create-sf-aoi-response-name").textContent = name;
         document.querySelector("#create-sf-aoi-response-id").textContent = id;
         document.querySelector("#create-sf-aoi-response-url").textContent = url + "\n\n" + JSON.stringify(data);
     });
+});
+
+document.querySelector('#aoi-map-link').addEventListener('click', function(evt) {
+  evt.preventDefault();
+
+  // Create the AOI map
+  var aoiMap = L.map('aoi-map', {
+      keyboard: false,
+      attributionControl: false
+  }).setView([38.7386, -121.7299], 8);
+
+  // Set a Mapbox basemap layer so we have some context on where we are in the world
+  var layer = L.tileLayer('http://api.mapbox.com/v4/urthecast2.ipog0aj7/{z}/{x}/{y}.jpg?access_token=pk.eyJ1IjoidXJ0aGVjYXN0MiIsImEiOiJKM1pwMnFZIn0.ReeiMLJtH18oqVeto7KyZw').addTo(aoiMap);
+
+  var geoJson = L.geoJson(JSON.parse(localStorage.getItem('sf-aoi-geometry'))).addTo(aoiMap);
+
+  setTimeout(function() {
+    aoiMap.fitBounds(geoJson);
+  }, 5);
 });
 
 // This examples queries the Archive/Catalog, restricting by AOI ID
@@ -47,35 +54,29 @@ document.querySelector('#catalog-filter-aoi').addEventListener('click', function
     });
 });
 
-// Get the next Forecast (capture opportunity) for the Theia sensor for our AOI
-document.querySelector('#sat-tracker-forecast-aoi').addEventListener('click', function(evt) {
-    evt.preventDefault();
+// Get the next Forecast (capture opportunity) for a sensor
+$('.next-forecast-for-aoi').on('click', function(evt) {
+  evt.preventDefault();
 
-    // Expects AOI to have been created - no error handling
-    var aoiID = localStorage.getItem('sf-aoi-id');
+  var $section = $(this).closest('section');
+  var sensor = $section.attr('data-sensor');
+  var aoiID = localStorage.getItem('sf-aoi-id');
 
-    // method is in sat-tracker-demo.js
-    getNextForecastForAOI(aoiID, 'theia', function(data, url) {
-        var next = data.payload[0]['first_orbit_point_epoch'];
+  // method is in sat-tracker-demo.js
+  getNextForecastForAOI(aoiID, sensor, function(data, url) {
+      if (!data.payload[0]) {
+        $('.next-forecast-for-aoi-response', $section).html('Next capture opportunity is > 14 days away.');
+        $('.next-forecast-for-aoi-code', $section).html(url);
 
-        document.querySelector("#sat-tracker-forecast-aoi-response").textContent = moment(next).fromNow();
-        document.querySelector("#sat-tracker-forecast-aoi-url").textContent = url;
-    });
-});
+        return;
+      }
 
-// Get the next Forecast (capture opportunity) for the oli-tirs sensor (Landsat 8) for our AOI ID
-document.querySelector('#sat-tracker-forecast-aoi-landsat').addEventListener('click', function(evt) {
-    evt.preventDefault();
+      var next = data.payload[0]['first_orbit_point_epoch'];
 
-    // Expects AOi to have been created - no error handling
-    var aoiID = localStorage.getItem('sf-aoi-id');
+      $('.next-forecast-for-aoi-response', $section).html(moment(next).fromNow());
+      $('.next-forecast-for-aoi-code', $section).html(url);
+  });
 
-    // method is in sat-tracker-demo.js
-    getNextForecastForAOI(aoiID, 'oli-tirs', function(data, url) {
-        var next = data.payload[0]['first_orbit_point_epoch'];
-        document.querySelector("#sat-tracker-forecast-aoi-response-landsat").textContent = moment(next).fromNow();
-        document.querySelector("#sat-tracker-forecast-aoi-url-landsat").textContent = url + "\n\n" + JSON.stringify(data);
-    });
 });
 
 // Helper method that actually makes the API request to create an AOI

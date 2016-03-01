@@ -32,24 +32,15 @@ $('.satellite-current-location').on('click', function(evt) {
     });
 });
 
-// Get some TLEs (two line element sets) of the ISS
-$('#iss-tles').on('click', function(evt) {
-    evt.preventDefault();
+$('.tle-link').on('click', function(evt) {
+  evt.preventDefault();
 
-    getTLEsForSatellite('iss', function(data) {
-        $('#iss-tles-result').html(JSON.stringify(data.payload[0]));
-    });
+  var $section = $(this).closest('section');
+  var satellite = $section.attr('data-satellite');
 
-});
-
-// Get some TLEs (two line element sets) of Landsat8
-$('#landsat8-tles').on('click', function(evt) {
-    evt.preventDefault();
-
-    getTLEsForSatellite('landsat-8', function(data) {
-        $('#landsat8-tles-result').html(JSON.stringify(data.payload[0]));
-    });
-
+  getTLEsForSatellite(satellite, function(data) {
+      $('.code-block', $section).html(JSON.stringify(data.payload[0]));
+  });
 });
 
 // Helper method that makes the actual API call required for getting TLEs
