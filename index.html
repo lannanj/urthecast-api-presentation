@@ -56,7 +56,7 @@
                 <section>
                     <p class="fragment">A "user interface" for the world of servers and software</p>
                     <p class="fragment">A way for two software systems to communicate</p>
-                    <p class="fragment">All around you. Likely have used 20+ APIs already today</p>
+                    <p class="fragment">All around you. Probably used 20+ APIs already today</p>
                     <p class="fragment">Enable programmatic access to data and services</p>
                 </section>
 
@@ -67,7 +67,7 @@
 
                 <section>
                     <p class="fragment">24 / 7 / 365 access</p>
-                    <p class="fragment">Disasters don't wait for business hours</p>
+                    <p class="fragment">Global events don't always happen during business hours</p>
                     <p class="fragment">Response times measured in milliseconds</p>
                     <p class="fragment">Scalable - serve many customers simultaneously</p>
                     <p class="fragment">WYSIWYG vs WYSIAYG</p>
@@ -82,7 +82,7 @@
                     <h2>Preface:</h2>
                     <p class="fragment">This presentation is a web application</p>
                     <p class="fragment">All examples are making live API requests</p>
-                    <p class="fragment">Click on the orange text to make the API request</p>
+                    <p class="fragment">Orange links make API requests</p>
                     <p class="fragment">This presentation is open source and available on GitHub</p>
                 </section>
 
@@ -139,11 +139,7 @@
                 </section>
 
                 <section>
-                    <p>You do that with the Areas of Interest API</p>
-                </section>
-
-                <section>
-                    <h2>AOIs enable you to:</h2>
+                    <h2>Areas of Interest API:</h2>
                     <p class="fragment">Define a region of the planet you want to monitor</p>
                     <p class="fragment">See capture opportunities from our satellites and sensors</p>
                     <p class="fragment">Search our imagery archive for data that intersects</p>
@@ -182,15 +178,7 @@
                 </section>
 
                 <section>
-                    <p>Customers frequently ask for a way to see and forecast capture opportunities from satellites.</p>
-                </section>
-
-                <section>
-                    <p>The Satellite Tracker API makes that information available.</p>
-                </section>
-
-                <section>
-                    <p>Sat Tracker enables you to:</p>
+                    <p>Sattelite Tracker APIs enables you to:</p>
                     <p class="fragment">Learn what satellites and sensors are available</p>
                     <p class="fragment">Query past, present, predicted position of satellites</p>
                     <p class="fragment">See historical capture opportunities and 14 day predictions</p>
@@ -233,7 +221,7 @@
                 <section>
                     <p class="fragment">Every satellite has a different orbit.</p>
                     <p class="fragment">Each sensor has a different capture area.</p>
-                    <p class="fragment">It's non trivial to know when we might capture your AOI.</p>
+                    <p class="fragment">It's not trivial to know when we might capture your AOI.</p>
                 </section>
 
                 <section>
@@ -241,25 +229,25 @@
                 </section>
 
                 <section data-sensor="theia">
-                    <p><a href="#" class="next-forecast-for-aoi">When is the next capture opportunity from Theia?</a></p>
+                    <p><a href="#" class="next-forecast-for-aoi">When is the next capture opportunity for my AOI from Theia?</a></p>
                     <p class="next-forecast-for-aoi-response">&nbsp;</p>
                     <pre class="next-forecast-for-aoi-code code-block code-block--big"></pre>
                 </section>
 
                 <section data-sensor="deimos-1">
-                    <p><a href="#" class="next-forecast-for-aoi">When is the next capture opportunity from Deimos-1?</a></p>
+                    <p><a href="#" class="next-forecast-for-aoi">When is the next capture opportunity for my AOI from Deimos-1?</a></p>
                     <p class="next-forecast-for-aoi-response">&nbsp;</p>
                     <pre class="next-forecast-for-aoi-code code-block code-block--big"></pre>
                 </section>
 
                 <section data-sensor="deimos-2">
-                    <p><a href="#" class="next-forecast-for-aoi">When is the next capture opportunity from Deimos-2?</a></p>
+                    <p><a href="#" class="next-forecast-for-aoi">When is the next capture opportunity for my AOI from Deimos-2?</a></p>
                     <p class="next-forecast-for-aoi-response">&nbsp;</p>
                     <pre class="next-forecast-for-aoi-code code-block code-block--big"></pre>
                 </section>
 
                 <section data-sensor="landsat-8">
-                    <p><a href="#" class="next-forecast-for-aoi">When is the next capture opportunity from Landsat-8?</a></p>
+                    <p><a href="#" class="next-forecast-for-aoi">When is the next capture opportunity for my AOI from Landsat-8?</a></p>
                     <p class="next-forecast-for-aoi-response">&nbsp;</p>
                     <pre class="next-forecast-for-aoi-code code-block code-block--big"></pre>
                 </section>
@@ -301,8 +289,12 @@
 
                 <!-- Event Stream Examples -->
                 <section>
-                    <h2>Event Streams API</h2>
-                    <p class="fragment">Streams of events happening across the platform</p>
+                    <h2>3.3 Event Streams API</h2>
+                </section>
+
+                <section>
+                    <p>Event Streams let you:</p>
+                    <p class="fragment">See all events happening across the web platform</p>
                     <p class="fragment">Track activity within your AOI</p>
                     <p class="fragment">Coming soon: Subscriptions to 'push' events to your app</p>
                 </section>
@@ -329,15 +321,15 @@
                     <p>A Scene ID represents a capture from one of our sensors.</p>
                 </section>
 
-                <section>
-                    <p>The Archive API is a search engine for our metadata.</p>
-                </section>
-
                 <!-- Archive API Examples -->
                 <section>
-                    <h2>Archive API</h2>
+                    <h2>3.4 Archive API</h2>
+                    <p class="fragment">The search engine for all of our archived data.</p>
+                </section>
+
+                <section>
                     <p class="fragment">Searchable archive of all imagery on platform</p>
-                    <p class="fragment">Multi sensors - Theia, Deimos-1, Deimos-2, Landsat-8</p>
+                    <p class="fragment">Multi sensor - Theia, Deimos-1, Deimos-2, Landsat-8</p>
                     <p class="fragment">Search by: <span class="fragment">satellite,</span> <span class="fragment">sensor,</span> <span class="fragment">cloud coverage,</span> <span class="fragment">sun elevation angle,</span> <span class="fragment">geometry,</span> <span class="fragment">area of interest,</span> <span class="fragment">season,</span> <span class="fragment"> and more</span></p>
                 </section>
 
@@ -346,12 +338,17 @@
                 </section>
 
                 <section>
-                    <div class="fragment">
-                        <a href="#" id="how-many-scenes">How many scenes do we have in the catalog, right now?</a>
-                        <p id="how-many-scenes-results">&nbsp;</p>
-                        <pre id="how-many-scenes-url" class="fragment code-block"></pre>
-                    </div>
+                    <a href="#" id="scene-metadata" data-scene-id="dOCs_rKzTEilSTPmUOv_uw">What sort of metadata is stored for each scene?</a>
+                    <pre id="scene-metadata-results" style="height: 900px; font-size: 12px;">&nbsp;</pre>
+                    <pre id="scene-metadata-url" class="fragment code-block"></pre>
                 </section>
+
+                <section data-sensor="theia,deimos-1,deimos-2,landsat-8">
+                    <a href="#" class="how-many-scenes">How many scenes do we have in the catalog?</a>
+                    <p class="how-many-scenes-results">&nbsp;</p>
+                    <pre class="fragment how-many-scenes-url code-block"></pre>
+                </section>
+
 
                 <section data-sensor="theia">
                     <a href="#" class="how-many-scenes">How many Theia scenes do we have in the catalog?</a>
@@ -392,55 +389,65 @@
                             <option value="75">75%</option>
                             <option value="100">100%</option>
                         </select>
-                        cloud coverage? <a href="#" id="how-many-advanced">Query</a>
+                        cloud coverage? <a href="#" id="how-many-advanced">Search</a>
                     </div>
                     <p id="how-many-advanced-results"></p>
                     <p id="how-many-advanced-url"></p>
                 </section>
 
-                <section>
-                    <a href="#" id="most-recent-theia-scene">When was the most recent Theia scene acquired?</a>
-                    <p id="most-recent-theia-scene-results">&nbsp;</p>
-                    <pre id="most-recent-theia-scene-url" class="fragment code-block code-block--big"></pre>
+                <section data-platform="iss">
+                    <a href="#" class="most-recent-scene">When was the most recent Theia scene acquired?</a>
+                    <p class="most-recent-scene-results">&nbsp;</p>
+                    <pre class="fragment code-block code-block--big most-recent-scene-url"></pre>
+                </section>
+
+                <section data-platform="deimos-1">
+                    <a href="#" class="most-recent-scene">When was the most recent Deimos-1 scene acquired?</a>
+                    <p class="most-recent-scene-results">&nbsp;</p>
+                    <pre class="fragment code-block code-block--big most-recent-scene-url"></pre>
+                </section>
+
+                <section data-platform="deimos-2">
+                    <a href="#" class="most-recent-scene">When was the most recent Deimos-2 scene acquired?</a>
+                    <p class="most-recent-scene-results">&nbsp;</p>
+                    <pre class="fragment code-block code-block--big most-recent-scene-url"></pre>
+                </section>
+
+                <section data-platform="landsat-8">
+                    <a href="#" class="most-recent-scene">When was the most recent Landsat-8 scene acquired?</a>
+                    <p class="most-recent-scene-results">&nbsp;</p>
+                    <pre class="fragment code-block code-block--big most-recent-scene-url"></pre>
                 </section>
 
                 <section>
-                    <a href="#" id="most-recent-landsat-scene">When was the most recent Landsat8 scene acquired?</a>
-                    <p id="most-recent-landsat-scene-results">&nbsp;</p>
-                    <pre id="most-recent-landsat-scene-url" class="fragment code-block code-block--big"></pre>
-                </section>
-
-                <section>
-                    <div class="fragment">
-                        <h2>AOI + Archive</h2>
-                        <p><a href="#" id="catalog-filter-aoi">How many scenes intersect with our AOI?</a></p>
-                        <p id="catalog-filter-aoi-response">&nbsp;</p>
-                        <pre id="catalog-filter-aoi-url" class="code-block code-block--big"></pre>
-                    </div>
+                    <h2>Archive API + AOI API</h2>
+                    <p><a href="#" id="catalog-filter-aoi">How many scenes intersect with our AOI?</a></p>
+                    <p id="catalog-filter-aoi-response">&nbsp;</p>
+                    <pre id="catalog-filter-aoi-url" class="code-block code-block--big"></pre>
                 </section>
 
                 <section>
                     <h2>Recap:</h2>
                     <p class="fragment">The planet is big, so we created an AOI</p>
                     <p class="fragment">Forecasting captures is hard, so we used Satellite Tracker</p>
-                    <p class="fragment">Knowing when we capture data is better - Events</p>
-                    <p class="fragment">We can search and browse metadata using the Archive</p>
+                    <p class="fragment">Used Events API to know when we capture data</p>
+                    <p class="fragment">Searched and browsed scene metadata with the Archive</p>
                 </section>
 
                 <section>
-                    <p class="fragment">So now let's see render this data.</p>
+                    <p class="fragment">So now let's see this data.</p>
                 </section>
 
                 <!-- Map Tile Examples -->
                 <section>
-                    <h2>Map Tile Service</h2>
+                    <h2>3.5 Map Tile Service</h2>
                     <p class="fragment">Low bandwidth, high performance visualization of data</p>
                 </section>
 
                 <section>
-                    <p class="fragment">Normalized map tiles from all imagery in the archive</p>
-                    <p class="fragment">Filter the imagery being shown with Archive queries</p>
-                    <p class="fragment">Multiple renderers to showcase data behind pixels</p>
+                    <p class="fragment">Normalized map tiles from all sensors in the archive</p>
+                    <p class="fragment">Filter the imagery being shown using Archive API queries</p>
+                    <p class="fragment">Multiple renderers showcase data behind pixels</p>
                     <p class="fragment">True RGB, NDVI, False color NIR, NDWI, EVI</p>
                 </section>
 
@@ -686,6 +693,11 @@ l                       data-acquired-lte="2015-03-30">
                     <p class="fragment">AOIs + Events = real time updates</p>
                 </section>
 
+                <section>
+                    <h2>Global Coverage</h2>
+                    <p class="fragment">These examples show only small regions of the planet</p>
+                    <p class="fragment">Use our APIs to track millions of AOIs - simultaneously</p>
+                </section>
 
                 <!-- Map Tile Summary -->
                 <section>
@@ -699,8 +711,8 @@ l                       data-acquired-lte="2015-03-30">
                 <!-- Conclusion -->
                 <section>
                     <h2>Conclusion</h2>
-                    <p class="fragment">Urthecast APIs provide you with infrastructure to build custom mapping applications.</p>
-                    <p class="fragment">... and this is just the beginning.</p>
+                    <p class="fragment">Urthecast APIs provide you with the tools to monitor and measure the planet.</p>
+                    <p class="fragment">... and we're just getting started</p>
                 </section>
 
                 <section>

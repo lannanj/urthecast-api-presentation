@@ -21,23 +21,34 @@ $('#how-many-advanced').on('click', function(evt) {
   });
 });
 
-// Example to query the catalog and get the most recent Theia scene
-document.querySelector('#most-recent-theia-scene').addEventListener('click', function(evt) {
-    evt.preventDefault();
-    queryCatalog(['platform=iss', 'sort=-acquired', 'limit=1'], function(data, url) {
-        var timestamp = data.payload[0]['acquired'];
-        document.querySelector("#most-recent-theia-scene-results").textContent = moment(timestamp).fromNow();
-        $('#most-recent-theia-scene-url').html(url + "\n\n" + JSON.stringify(data.payload[0]));
-    });
+$('#scene-metadata').on('click', function(evt) {
+  evt.preventDefault();
+
+  var sceneId = $(this).attr('data-scene-id');
+
+  queryCatalog(['id=' + sceneId], function(data, url) {
+    var payload = data.payload[0];
+    $('#scene-metadata-results').html(JSON.stringify(payload, null, '\t'));
+    $('#scene-metadata-url').html(url);
+  });
 });
 
-// Example to query the catalog and get the most recent Landsat8 scene
-document.querySelector('#most-recent-landsat-scene').addEventListener('click', function(evt) {
+$('.most-recent-scene').on('click', function(evt) {
     evt.preventDefault();
-    queryCatalog(['platform=landsat-8', 'sort=-acquired', 'limit=1'], function(data, url) {
-        var timestamp = data.payload[0]['acquired'];
-        document.querySelector("#most-recent-landsat-scene-results").textContent = moment(timestamp).fromNow();
-        $('#most-recent-landsat-scene-url').html(url + "\n\n" + JSON.stringify(data.payload[0]));
+
+    var $section = $(this).closest('section');
+    var platform = $section.attr('data-platform');
+
+    queryCatalog(['platform=' + platform, 'sort=-acquired', 'limit=1'], function(data, url) {
+      var timestamp = null;
+      if (data.payload.length === 0) {
+        timestamp = "😢";
+      } else {
+        timestamp = moment(data.payload[0]['acquired']).fromNow();
+      }
+
+      $('.most-recent-scene-results', $section).html(timestamp);
+      $('.most-recent-scene-url', $section).html(url);
     });
 });
 
