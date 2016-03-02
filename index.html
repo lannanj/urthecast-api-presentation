@@ -150,7 +150,7 @@
                     <h2>Create an AOI</h2>
                     <p>GeoJSON:</p>
                     <pre id="sf-aoi">
-{"name":"San Francisco","geometry":{"type":"Polygon","coordinates":[[[-122.51747131347655,37.71261539271678],[-122.51747131347655,37.82036164330873],[-122.35507965087889,37.82036164330873],[-122.35507965087889,37.71261539271678],[-122.51747131347655,37.71261539271678]]]}}
+{"name":"San Francisco","geometry":{"type": "Polygon", "coordinates": [[[-122.49927520751953,37.667516276171426],[-122.49824523925781,37.68137494751297],[-122.5191879272461,37.78726741375342],[-122.48794555664061,37.79350762410675],[-122.48176574707031,37.81114015184754],[-122.46665954589844,37.81439492742207],[-122.46219635009764,37.81005519477107],[-122.40795135498047,37.815751041563544],[-122.3650360107422,37.7761422535397],[-122.36125946044922,37.737598269779824],[-122.33963012695312,37.72320698914131],[-122.36949920654295,37.69821925772116],[-122.38391876220702,37.70012079430599],[-122.38048553466797,37.68137494751297],[-122.36984252929688,37.65909111310584],[-122.49927520751953,37.667516276171426]]]}}
                     </pre>
                     <p><a href="#" id="create-sf-aoi">Create AOI</a></p>
                     <p id="create-sf-aoi-response-name">&nbsp;</p>
@@ -220,7 +220,7 @@
                 <section>
                     <p class="fragment">Every satellite has a different orbit.</p>
                     <p class="fragment">Each sensor has a different capture area.</p>
-                    <p class="fragment">It's not trivial to know when we might capture your AOI.</p>
+                    <p class="fragment">The Sat Tracker API makes it trivial to know when we might capture your AOI.</p>
                 </section>
 
                 <section>
@@ -622,6 +622,11 @@ l                       data-acquired-lte="2015-03-30">
                     <p class="fragment">Optionally clip the scene to an Area of Interest</p>
                     <p class="fragment">Fast and secure download from S3</p>
                     <p class="fragment">Billed by the square kilometer</p>
+                </section>
+
+                <section>
+                    <p>Events API + AOI API + Ordering API:</p>
+                    <p class="fragment">Automatically purchase and download new GeoTIFF imagery when it becomes available on the platform.</p>
                 </section>
 
                 <section>
