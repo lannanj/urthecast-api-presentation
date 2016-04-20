@@ -42,7 +42,7 @@ $('.most-recent-scene').on('click', function(evt) {
     queryCatalog(['platform=' + platform, 'sort=-acquired', 'limit=1'], function(data, url) {
       var timestamp = null;
       if (data.payload.length === 0) {
-        timestamp = "😢";
+        timestamp = "No data at this time";
       } else {
         timestamp = moment(data.payload[0]['acquired']).fromNow();
       }
