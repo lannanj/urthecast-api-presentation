@@ -48,7 +48,7 @@ document.querySelector('#catalog-filter-aoi').addEventListener('click', function
 
     // Query the catalog, including the geometry parameter w/ intersects filter
     // This will ensure all scenes returned intersect with the AOI ID provided
-    queryCatalog(['geometry_intersects=' + aoiId], function(data, url) {
+    queryCatalog({ geometry_intersects: aoiId, limit: 0 }, function(data, url) {
         document.querySelector("#catalog-filter-aoi-response").textContent = data.meta.total;
         document.querySelector("#catalog-filter-aoi-url").textContent = url + "\n\n" + JSON.stringify(data.meta);
     });
@@ -83,7 +83,7 @@ $('.next-forecast-for-aoi').on('click', function(evt) {
 function createAOI(data, callback) {
     var apiKey = localStorage.getItem('apiKey');
         apiSecret = localStorage.getItem('apiSecret'),
-        url = "https://api.urthecast.com/v1/consumers/apps/me/aois?api_key=" + apiKey + "&api_secret=" + apiSecret + "&";
+        url = "https://api.urthecast.com/v1/consumers/apps/me/aois?api_key=" + apiKey + "&api_secret=" + apiSecret;
 
     $.ajax({
         type: "POST",
