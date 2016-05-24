@@ -26,9 +26,53 @@ body {
   display: none;
 }
 
+.reveal .fade {
+  -webkit-transition: opacity 0.35s ease;
+  transition: opacity 0.35s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reveal .fade.in {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.reveal pre.fade {
+  height: 200px; /* Take up a fixed amount vertical space in the slide when hidden */
+}
+
+.reveal pre.fade.in {
+  height: auto; /* Switch to actual height when visible */
+}
+
 .map-demo-slide p {
   background: rgba(0, 0, 0, .5);
   opacity: .75;
+}
+
+.order-demo-slide p,
+.order-demo-slide pre {
+  background: rgba(0, 0, 0, .5);
+  opacity: 1;
+  padding: 2px 5px;
+}
+
+#order-demo-bands {
+  display: block;
+  margin: 0 auto 40px;
+}
+
+#order-status-results.processing {
+  background: rgba(50, 0, 0, .5);
+}
+
+#order-status-results.delivered {
+  background: rgba(0, 50, 0, .5);
+}
+
+#order-tool-command {
+  display: inline;
 }
 
 #explore-demo {
