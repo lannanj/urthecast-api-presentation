@@ -23,7 +23,7 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .reveal .fade {
@@ -63,12 +63,16 @@ body {
   margin: 0 auto 40px;
 }
 
-#order-status-results.processing {
+#order-status-results.not-delivered {
   background: rgba(50, 0, 0, .5);
 }
 
 #order-status-results.delivered {
   background: rgba(0, 50, 0, .5);
+}
+
+#order-status-note {
+  height: auto;
 }
 
 #order-tool-command {

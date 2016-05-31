@@ -1,5 +1,6 @@
 var orderSceneId = 'RIsvgmw9S2q1qKWSCfDPmg';
 var orderGeoJson = null;
+var orderStatusTimeout = null;
 
 function orderDemo(event) {
   if (event.currentSlide.classList.contains('order-demo-slide') && !orderGeoJson) {
@@ -178,33 +179,55 @@ function updateOrderStatusUrl() {
   document.querySelector('#order-status-url').textContent = statusUrl;
 }
 
-document.querySelector('#order-status-link').addEventListener('click', function(evt) {
-  evt.preventDefault();
+function checkOrderStatus() {
+  if (orderStatusTimeout != null) {
+    // Clear the timeout if the user clicks the "Check Order Status" link again instead of waiting
+    clearTimeout(orderStatusTimeout);
+    orderStatusTimeout = null;
+  }
 
   var statusUrl = getOrderStatusUrl();
 
   var results = document.querySelector('#order-status-results');
-  results.classList.remove('processing', 'delivered');
+  results.classList.remove('not-delivered', 'delivered');
+
+  var note = document.querySelector('#order-status-note');
+  note.classList.remove('in', 'hidden');
 
   var deliveryLink = document.querySelector('#order-delivery-link');
   deliveryLink.classList.remove('in');
 
   makeRequest(statusUrl, results.id, {
     complete: function(data) {
+      orderStatusTimeout = null;
+
       if (data.payload && data.payload.length) {
         var order = data.payload[0];
 
         if (order.state === 'delivered') {
           results.classList.add('delivered');
+          note.classList.add('hidden');
           deliveryLink.classList.add('in');
         } else {
-          results.classList.add('processing');
+          results.classList.add('not-delivered');
+
+          if (order.state === 'processing' && Reveal.getCurrentSlide().id === 'order-demo-7') {
+            note.classList.add('in');
+
+            // Automatically check the order status again after 5 seconds as it is still processing
+            orderStatusTimeout = setTimeout(checkOrderStatus, 5000);
+          }
         }
 
         replaceObject(data, order);
       }
     },
   });
+}
+
+document.querySelector('#order-status-link').addEventListener('click', function(evt) {
+  evt.preventDefault();
+  checkOrderStatus();
 });
 
 // Step 5: Get/download order
