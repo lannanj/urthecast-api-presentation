@@ -15,7 +15,7 @@ Full API documentation is available at https://developers.urthecast.com/docs.
 
 Important things to note:
 
-* All "live" demoes require an API key / secret
+* All "live" demos require an API key / secret
 * You will need to create an account at https://developers.urthecast.com to get an API key / secret
 
 Questions? Please email platform@urthecast.com.
