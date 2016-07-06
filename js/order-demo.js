@@ -214,8 +214,8 @@ function checkOrderStatus() {
           if (order.state === 'processing' && Reveal.getCurrentSlide().id === 'order-demo-7') {
             note.classList.add('in');
 
-            // Automatically check the order status again after 5 seconds as it is still processing
-            orderStatusTimeout = setTimeout(checkOrderStatus, 5000);
+            // Automatically check the order status again after 15 seconds as it is still processing
+            orderStatusTimeout = setTimeout(checkOrderStatus, 15000);
           }
         }
 
@@ -294,6 +294,12 @@ function makeRequest(url, resultsId, options) {
   results.classList.add('in');
   results.textContent = 'Loading...';
 
+  var status = document.getElementById(resultsId.replace('results', 'status'));
+
+  if (status) {
+    status.classList.remove('in');
+  }
+
   $.ajax({
     type: options.type || 'GET',
     url: url,
@@ -307,6 +313,11 @@ function makeRequest(url, resultsId, options) {
       }
 
       results.textContent = JSON.stringify(data, null, 4);
+
+      if (status) {
+        status.classList.add('in');
+        status.textContent = xhr.statusText;
+      }
 
       if (options.done) {
         options.done.call(this, results);

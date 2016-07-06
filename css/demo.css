@@ -46,6 +46,11 @@ body {
   height: auto; /* Switch to actual height when visible */
 }
 
+.reveal pre.status {
+  height: 20px !important;
+  text-align: center;
+}
+
 .map-demo-slide p {
   background: rgba(0, 0, 0, .5);
   opacity: .75;
@@ -129,6 +134,7 @@ body {
 .reveal section .leaflet-map-pane {
     border: 1px solid #000;
 }
+
 .reveal section .leaflet-map-pane img {
     margin: auto;
     background: none;

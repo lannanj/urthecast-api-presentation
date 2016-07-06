@@ -597,12 +597,13 @@
                     <p>To begin, we must first create a new order:</p>
                     <pre id="order-create-url"></pre>
                     <a href="#" id="order-create-link">Create New Order</a>
+                    <pre id="order-create-status" class="status fade"></pre>
                     <pre id="order-create-results" class="fade"></pre>
                 </section>
 
                 <section>
                     <section id="order-demo-4" class="order-demo-slide">
-                        <p>Next, we create a new line item, using our scene ID, AOI ID, and the desired bands we want to render:</p>
+                        <p>Next, we create a new line item using our scene ID, AOI ID, and the desired bands we want included in the order:</p>
                         <select id="order-bands" size="11" multiple>
                             <option>red</option>
                             <option>green</option>
@@ -621,6 +622,7 @@
                     </section>
 
                     <section id="order-demo-5" class="order-demo-slide">
+                        <pre id="order-create-line-item-status" class="status fade"></pre>
                         <pre id="order-create-line-item-results" class="fade"></pre>
                     </section>
                 </section>
@@ -629,6 +631,7 @@
                     <p>Finally, we can purchase the order:</p>
                     <pre id="order-purchase-url"></pre>
                     <a href="#" id="order-purchase-link">Purchase Order</a>
+                    <pre id="order-purchase-status" class="status fade"></pre>
                     <pre id="order-purchase-results" class="fade"></pre>
                 </section>
 
@@ -638,7 +641,7 @@
                         <pre id="order-status-url"></pre>
                         <a href="#" id="order-status-link">Check Order Status</a>
                         <pre id="order-status-results" class="fade"></pre>
-                        <pre id="order-status-note" class="fade">Your order is still processing. The status will automatically refresh every 5 seconds. It may take up to 5 minutes to process depending on the number of bands selected.</pre>
+                        <pre id="order-status-note" class="fade">Your order is still processing. The status will automatically refresh every 15 seconds. It may take up to 5 minutes to process depending on the number of bands selected.</pre>
                         <a href="#" id="order-delivery-link" class="fade">Get Download URL</a>
                     </section>
 
@@ -657,7 +660,7 @@
                     <p>Additionally, we offer an open-source CLI tool to help automate ordering:</p>
                     <a href="https://github.com/urthecast/ordering-cli-demo" target="_blank">https://github.com/urthecast/ordering-cli-demo</a>
                     <div class="fragment">
-                        <p>Use the command below to place another order for this scene, clipped to our AOI, for all available bands -- in one easy and convenient step:</p>
+                        <p>Use the command below to place an order for the same scene, clipped to our AOI, for all available bands -- in one easy and convenient step:</p>
                         <pre id="order-tool-command"></pre>
                     </div>
                 </section>
