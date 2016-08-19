@@ -1,7 +1,7 @@
 // This example creates an Area of Interest
-document.querySelector('#create-sf-aoi').addEventListener('click', function(evt) {
+document.querySelector('#create-wc-aoi').addEventListener('click', function(evt) {
     evt.preventDefault();
-    var data = $('#sf-aoi').html();
+    var data = $('#wc-aoi').html();
 
     // createAOI callback will receive data and URL and print to screen
     createAOI(data, function(data, url) {
@@ -10,13 +10,13 @@ document.querySelector('#create-sf-aoi').addEventListener('click', function(evt)
             geometry = data.payload[0].geometry;
 
         // Set the ID and name in localStorage for easy use in later demos
-        localStorage.setItem('sf-aoi-id', id);
-        localStorage.setItem('sf-aoi-name', name);
-        localStorage.setItem('sf-aoi-geometry', JSON.stringify(geometry));
+        localStorage.setItem('wc-aoi-id', id);
+        localStorage.setItem('wc-aoi-name', name);
+        localStorage.setItem('wc-aoi-geometry', JSON.stringify(geometry));
 
-        document.querySelector("#create-sf-aoi-response-name").textContent = name;
-        document.querySelector("#create-sf-aoi-response-id").textContent = id;
-        document.querySelector("#create-sf-aoi-response-url").textContent = url + "\n\n" + JSON.stringify(data);
+        document.querySelector("#create-wc-aoi-response-name").textContent = name;
+        document.querySelector("#create-wc-aoi-response-id").textContent = id;
+        document.querySelector("#create-wc-aoi-response-url").textContent = url + "\n\n" + JSON.stringify(data);
     });
 });
 
@@ -27,24 +27,25 @@ document.querySelector('#aoi-map-link').addEventListener('click', function(evt) 
   var aoiMap = L.map('aoi-map', {
       keyboard: false,
       attributionControl: false
-  }).setView([38.7386, -121.7299], 8);
+  }).setView([52, -120], 5);
+
+  var toffset = 3
+
+  mapLocation = './cloud-data/western_canada_t' + toffset + '_geo/{z}/{x}/{y}.png'
 
   // Set a Mapbox basemap layer so we have some context on where we are in the world
-  var layer = L.tileLayer('http://api.mapbox.com/v4/urthecast2.ipog0aj7/{z}/{x}/{y}.jpg?access_token=pk.eyJ1IjoidXJ0aGVjYXN0MiIsImEiOiJKM1pwMnFZIn0.ReeiMLJtH18oqVeto7KyZw').addTo(aoiMap);
+  var layer = L.tileLayer(mapLocation, {tms: true, opacity: 0.7, attribution: ""}).addTo(aoiMap);
 
-  var geoJson = L.geoJson(JSON.parse(localStorage.getItem('sf-aoi-geometry'))).addTo(aoiMap);
+ var geoJson = L.geoJson(JSON.parse(localStorage.getItem('wc-aoi-geometry'))).addTo(aoiMap);
 
-  setTimeout(function() {
-    aoiMap.fitBounds(geoJson);
-  }, 5);
 });
-
+/*
 // This examples queries the Archive/Catalog, restricting by AOI ID
 document.querySelector('#catalog-filter-aoi').addEventListener('click', function(evt) {
     evt.preventDefault();
 
     // Expects AOi to have been created
-    var aoiId = localStorage.getItem('sf-aoi-id');
+    var aoiId = localStorage.getItem('wc-aoi-id');
 
     // Query the catalog, including the geometry parameter w/ intersects filter
     // This will ensure all scenes returned intersect with the AOI ID provided
@@ -53,14 +54,23 @@ document.querySelector('#catalog-filter-aoi').addEventListener('click', function
         document.querySelector("#catalog-filter-aoi-url").textContent = url + "\n\n" + JSON.stringify(data.meta);
     });
 });
-
+*/
 // Get the next Forecast (capture opportunity) for a sensor
 $('.next-forecast-for-aoi').on('click', function(evt) {
   evt.preventDefault();
 
   var $section = $(this).closest('section');
   var sensor = $section.attr('data-sensor');
-  var aoiID = localStorage.getItem('sf-aoi-id');
+  var aoiID = localStorage.getItem('wc-aoi-id');
+  var $mapId = sensor + 'Map';
+  var mapContainer = sensor + 'Map';
+  
+ // Create the AOI map
+
+  var $mapId = L.map(mapContainer, {
+      keyboard: false,
+      attributionControl: false
+  }).setView([52, -120], 5);
 
   // method is in sat-tracker-demo.js
   getNextForecastForAOI(aoiID, sensor, function(data, url) {
@@ -72,10 +82,28 @@ $('.next-forecast-for-aoi').on('click', function(evt) {
       }
 
       var next = data.payload[0]['first_orbit_point_epoch'];
+      var now = moment().utc();
+      var hoursToNext = moment(next).diff(now,'hours');
+      var nowHourUtc = now.format('H');
+      var nextPassUtc = +hoursToNext + +nowHourUtc;
 
-      $('.next-forecast-for-aoi-response', $section).html(moment(next).fromNow());
-      $('.next-forecast-for-aoi-code', $section).html(url);
-  });
+      $('.next-forecast-for-aoi-response', $section).html(nextPassUtc);
+
+     if (nextPassUtc < 3) {
+	     nextPassUtc = 3;
+	     return;
+     }
+
+     if (nextPassUtc >48) {
+	     nextPassUtc = 48;
+	     return;
+     }
+//     nextPassUtc = 3;
+  mapLocation = './cloud-data/western_canada_t' + nextPassUtc + '_geo/{z}/{x}/{y}.png'
+
+  // Set a Mapbox basemap layer so we have some context on where we are in the world
+  var layer = L.tileLayer(mapLocation, {tms: true, opacity: 0.7, attribution: ""}).addTo($mapId); });
+ var geoJson = L.geoJson(JSON.parse(localStorage.getItem('wc-aoi-geometry'))).addTo($mapId);
 
 });
 
@@ -96,3 +124,30 @@ function createAOI(data, callback) {
         }
     });
 }
+
+// Given an AOI ID, get the next capture opportunity (Forecast), given a sensor, for that AOI
+function getNextForecastForAOI(aoiID, sensor, callback) {
+
+    var apiKey = localStorage.getItem('apiKey'),
+        apiSecret = localStorage.getItem('apiSecret'),
+        now = moment().toISOString(),
+        // Quick breakdown of this API request:
+        // * Sensor is the sensor you're interseted in - theia, oli-tirs, etc. See docs for accepted sensors
+        // * geometry_intersects - this is the geometry parameter with the "_intersects" filter applied to it.
+        //                         this ensures that the forecasts returned intersect with our AOI ID
+        // * epoch_gte - this ensures that the "epoch" (timestamp of the forecast) is "gte" (greater than or
+        //               or equal to) the current moment. So, basically, in the future.
+        // * sort - how to sort the results. in this case we're sorting by the epoch
+        // * limit - we only want the *next* forecast, so limit the results returned to 1
+        url = "https://api.urthecast.com/v1/satellite_tracker/sensor_platforms/" + sensor + "/forecasts?api_key=" + apiKey + "&api_secret=" + apiSecret + "&geometry_intersects=" + aoiID + "&epoch_gte=" + now + "&sort=epoch&limit=1";
+
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function(data) {
+            console.log(data);
+            if (callback) callback(data, url);
+        }
+    });
+}
+

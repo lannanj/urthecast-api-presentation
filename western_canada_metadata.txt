@@ -1,0 +1,20 @@
+Geotiff_Information:
+   Version: 1
+   Key_Revision: 1.0
+   Tagged_Information:
+      ModelTiepointTag (8,3):
+         267               435		     0
+         -117              50                0
+	164	   	   167               0
+	-139.06		   60		     0
+	557		   441	 	     0
+	-101.3634	   49		     0
+	514	           224		     0
+	-102		   60		     0		
+      End_Of_Tags.
+   Keyed_Information:
+      GTModelTypeGeoKey (Short,1): ModelTypeGeographic
+      GTRasterTypeGeoKey (Short,1): RasterPixelIsArea
+      GeographicTypeGeoKey (Short,1): GCS_WGS_84
+      End_Of_Keys.
+   End_Of_Geotiff.

@@ -1,0 +1,4 @@
+#Prevent conversion of scripts being used in cygwin to CLRF
+*.sh text eol=lf
+*.py text eol=lf
+*.txt text eol=lf
